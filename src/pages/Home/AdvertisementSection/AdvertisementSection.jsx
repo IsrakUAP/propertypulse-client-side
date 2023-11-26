@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionHeader from "../../../Components/SectionHeader/SectionHeader";
 import useProperties from "../../../Hooks/useProperties";
 
@@ -14,7 +15,8 @@ const AdvertisementSection = () => {
               <p className="text-gray-700">Location: {property.propertyLocation}</p>
               <p className="text-gray-700">Price Range: {property.priceRange}</p>
               <p className="text-gray-700">Verification Status: {property.verificationStatus}</p>
-              <button className="bg-green-400 w-full text-white py-2 px-4 mt-4 rounded-md hover:bg-green-500 focus:outline-none focus:shadow-outline-blue">Details</button>
+              <Link to={`/details/${property._id}`}><button className="bg-green-400 w-full text-white py-2 px-4 mt-4 rounded-md hover:bg-green-500 focus:outline-none focus:shadow-outline-blue">Details</button>
+              </Link>
             </div>
           ))}
         </div>

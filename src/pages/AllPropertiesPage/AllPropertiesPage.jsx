@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import useProperties from "../../Hooks/useProperties";
 import Navbar from "../Shared/Navbar/Navbar";
@@ -18,9 +19,10 @@ const AllPropertiesPage = () => {
               <img src={property.agentImage} alt="Agent" className="w-8 h-8 rounded-full mb-2" />
               <p className="text-gray-600 mb-2">Verification Status: {property.verificationStatus}</p>
               <p className="text-gray-600 mb-4">Price Range: {property.priceRange}</p>
-              <button className="bg-green-400 w-full text-white py-2 px-4 rounded-full hover:bg-gray-300">
+              <Link to={`/details/${property._id}`}> <button className="bg-green-400 w-full text-white py-2 px-4 rounded-full hover:bg-gray-300">
                 Details
               </button>
+              </Link>
             </div>
           ))}
         </div>
