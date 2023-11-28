@@ -4,10 +4,12 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { getAuth } from "firebase/auth";
 import { useState } from "react";
 import { useEffect } from "react";
+import useWishlist from "../../../Hooks/useWishlist";
 
 
 const Navbar = () => {
     const {user,logOut,createUser} = useContext(AuthContext);
+    const [wishlist] = useWishlist();
     const [displayName, setDisplayName] = useState("");
     const [photoURL, setPhotoURL] = useState("");
     useEffect(() => {
@@ -68,6 +70,10 @@ const Navbar = () => {
                         <button className="btn">Login</button>
                     </Link>
                 )}
+            </div>
+            <div className=" rounded-lg bg-gray-300 p-3" style={{ position: 'fixed', bottom: '10px', right: '10px' }}>
+                <img className="h-10" src="https://cdn4.iconfinder.com/data/icons/ui-elements-29/64/Add-Bookmark-save-wishlist-ui-512.png" alt="" />
+                <span className=" badge badge-success ">{wishlist.length}</span>
             </div>
         </nav>
     );

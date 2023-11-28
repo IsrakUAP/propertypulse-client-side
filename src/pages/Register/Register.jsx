@@ -8,24 +8,30 @@ import Swal from "sweetalert2";
 
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm()
-  const {createUser} = useContext(AuthContext)
+  const { register, handleSubmit, reset, formState: { errors } } = useForm()
+  const {createUser , updateUser} = useContext(AuthContext)
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
   const onSubmit = data => {
     createUser(data.email, data.password)
     .then(result => {
       const loggedUser = result.user;
       console.log(loggedUser);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Registration Successful",
-        showConfirmButton: false,
-        timer: 1500
-      });
-      navigate(from, {replace : true});
+      updateUser(data.name,data.photo)
+      .then(()=>{
+        console.log('userProfile');
+        reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Registration Successful",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/')
+      })
+      .catch(error =>
+        console.log(error)
+        )
     })
 
   };

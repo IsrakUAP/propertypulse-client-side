@@ -25,7 +25,7 @@ import PrivateRoute from "./PrivateRoute";
         },
         {
           path:"/details/:_id",
-          element:<DetailsPage></DetailsPage>
+          element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
         },
         {
           path:"/login",

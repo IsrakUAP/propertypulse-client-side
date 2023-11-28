@@ -2,10 +2,15 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useProperties from '../../Hooks/useProperties';
 import useReviews from '../../Hooks/useReviews';
+import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
+import useAxios from '../../Hooks/useAxios';
 
 const DetailsPage = () => {
+  const { user } = useAuth();
   const [properties] = useProperties();
   const [reviews, addReview] = useReviews();
+  const axiosProvider = useAxios(); 
   const { _id } = useParams();
   const filteredProperties = properties.filter((property) => property._id === _id);
   const [isReviewModalOpen, setReviewModalOpen] = useState(false);
@@ -15,11 +20,40 @@ const DetailsPage = () => {
   });
 
   useEffect(() => {
-   
+
   }, [_id]);
 
-  const handleAddToWishlist = () => {
-    console.log('Added to Wishlist:', filteredProperties);
+  const handleAddToWishlist = property => {
+    if (user && user.email) {
+      console.log(user.email, property);
+
+      const cartItem = {
+        email: user.email,
+        propertyTitle: property.propertyTitle,
+        propertyImage: property.propertyImage,     
+        propertyDescription: property.propertyDescription,
+        propertyLocation: property.propertyLocation,
+        priceRange: property.priceRange,
+        agentName: property.agentName,
+        agentImage: property.agentImage,
+        verificationStatus: property.verificationStatus
+
+        
+      }
+      axiosProvider.post('/wishlist', cartItem)
+        .then(res => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Added to Wishlist",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
+    }
   };
 
   const handleReviewSubmit = async () => {
@@ -35,14 +69,14 @@ const DetailsPage = () => {
           propertyTitle: filteredProperties[0].propertyTitle,
         }),
       });
-  
+
       if (response.ok) {
         addReview({
           ...newReview,
           propertyTitle: filteredProperties[0].propertyTitle,
         });
         setReviewModalOpen(false);
-        
+
       } else {
         console.error('Failed to submit review');
       }
@@ -71,7 +105,7 @@ const DetailsPage = () => {
           <p className="text-gray-600 mb-4">Agent: {property.agentName}</p>
           <button
             className="bg-blue-500 text-white py-2 px-4 rounded-full mb-4 hover:bg-blue-700"
-            onClick={handleAddToWishlist}
+            onClick={() => handleAddToWishlist(property)}
           >
             Add to Wishlist
           </button>
