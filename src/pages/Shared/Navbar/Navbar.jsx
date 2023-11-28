@@ -1,7 +1,30 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { getAuth } from "firebase/auth";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
 const Navbar = () => {
+    const {user,logOut,createUser} = useContext(AuthContext);
+    const [displayName, setDisplayName] = useState("");
+    const [photoURL, setPhotoURL] = useState("");
+    useEffect(() => {
+        const auth = getAuth();
+        const currentUser = auth.currentUser;
+
+        if (currentUser) {
+            setDisplayName(currentUser.displayName);
+            setPhotoURL(currentUser.photoURL);
+        }
+    }, [user,createUser]);
+
+
+    const handleSignOut = () =>{
+        logOut()
+
+    }
 
     return (
         <nav className=" navbar flex items-center bg-gray-300 justify-between px-6 mx-auto">
@@ -34,11 +57,17 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="navbar-end">
-                <NavLink to="/login" className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "hover:text-green-300 underline font-semibold text-[18px]" : "font-semibold text-[18px]"
-                }>
-                    Login
-                </NavLink>
+            {user ? (
+                    <div className="flex items-center space-x-2">
+                        <img className="rounded-full h-8 w-8" src={photoURL} alt="User" />
+                        <p className="text-gray-700">{displayName}</p>
+                        <button onClick={handleSignOut} className="btn">Sign Out</button>
+                    </div>
+                ) : (
+                    <Link to="/login" className="text-black hover:text-gray-300" activeClassName="font-bold">
+                        <button className="btn">Login</button>
+                    </Link>
+                )}
             </div>
         </nav>
     );
