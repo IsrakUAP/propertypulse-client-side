@@ -7,6 +7,7 @@ import AllPropertiesPage from "../pages/AllPropertiesPage/AllPropertiesPage";
 import DetailsPage from "../pages/DetailsPage/DetailsPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 
  export const router = createBrowserRouter([
@@ -20,7 +21,7 @@ import Register from "../pages/Register/Register";
         },
         {
           path:"/allProperties",
-          element:<AllPropertiesPage></AllPropertiesPage>
+          element:<PrivateRoute><AllPropertiesPage></AllPropertiesPage></PrivateRoute>
         },
         {
           path:"/details/:_id",
