@@ -4,7 +4,7 @@ import useOffer from '../../../Hooks/useOffer';
 import useAxios from '../../../Hooks/useAxios';
 import { Link } from 'react-router-dom';
 
-const PropertyBoughtPage = () => {
+const PropertyBought = () => {
   const { user } = useAuth();
   const [offers, refetchOffers] = useOffer();
   const axiosProvider = useAxios();
@@ -83,4 +83,4 @@ const PropertyBoughtPage = () => {
   );
 };
 
-export default PropertyBoughtPage;
+export default PropertyBought;

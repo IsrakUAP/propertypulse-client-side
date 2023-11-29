@@ -13,6 +13,7 @@ import Wishlist from "../pages/Dashboard/Wishlist/Wishlist";
 import MyProfile from "../pages/Dashboard/myProfile/myProfile";
 import MakeOfferPage from "../pages/Dashboard/MakeOfferPage/MakeOfferPage";
 import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
+import Myreviews from "../pages/Dashboard/Myreviews/Myreviews";
 
 
  export const router = createBrowserRouter([
@@ -62,6 +63,10 @@ import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
         {
           path: 'propertyBought',
           element:<PropertyBought></PropertyBought>
+        },
+        {
+          path: 'myReviews',
+          element:<Myreviews></Myreviews>
         }
       ]
     },

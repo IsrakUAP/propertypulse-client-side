@@ -12,9 +12,9 @@ const DetailsPage = () => {
   const { user } = useAuth();
   const [properties] = useProperties();
   const [reviews, addReview] = useReviews();
-  const axiosProvider = useAxios(); 
+  const axiosProvider = useAxios();
   const { _id } = useParams();
-  const [,refetch] = useWishlist();
+  const [, refetch] = useWishlist();
   const filteredProperties = properties.filter((property) => property._id === _id);
   const [isReviewModalOpen, setReviewModalOpen] = useState(false);
   const [newReview, setNewReview] = useState({
@@ -33,7 +33,7 @@ const DetailsPage = () => {
       const cartItem = {
         email: user.email,
         propertyTitle: property.propertyTitle,
-        propertyImage: property.propertyImage,     
+        propertyImage: property.propertyImage,
         propertyDescription: property.propertyDescription,
         propertyLocation: property.propertyLocation,
         priceRange: property.priceRange,
@@ -41,7 +41,7 @@ const DetailsPage = () => {
         agentImage: property.agentImage,
         verificationStatus: property.verificationStatus
 
-        
+
       }
       axiosProvider.post('/wishlist', cartItem)
         .then(res => {
@@ -68,7 +68,10 @@ const DetailsPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          email:user.email,
+          reviewerEmail:user.email,
           reviewerName: newReview.reviewerName,
+          reviewerImage: user.photoURL,
           reviewDescription: newReview.reviewDescription,
           propertyTitle: filteredProperties[0].propertyTitle,
         }),

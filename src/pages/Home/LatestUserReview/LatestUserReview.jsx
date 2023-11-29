@@ -6,11 +6,13 @@ import SectionHeader from '../../../Components/SectionHeader/SectionHeader';
 import useReviews from '../../../Hooks/useReviews';
 const LatestUserReview = () => {
     const [reviews] = useReviews();
+    const sortedReviews = reviews.slice().sort((a, b) => b._id.localeCompare(a._id));
+
     return (
         <div className='mb-10'>
       <SectionHeader heading={"Latest User Review"} />
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        {reviews.slice(0, 3).map((review, index) => (
+        {sortedReviews.slice(0, 3).map((review, index) => (
           <SwiperSlide key={index} className="review-card p-4 bg-white shadow-md rounded-md">
             <div className='flex flex-col items-center'>
               <img className='h-32 w-32 object-cover rounded-full mb-4' src={review.reviewerImage} alt="Reviewer" />
