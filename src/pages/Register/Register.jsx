@@ -3,36 +3,50 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosAll from "../../Hooks/useAxiosAll";
+import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 
 
 
 
 const Register = () => {
+  const axiosAll = useAxiosAll();
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
-  const {createUser , updateUser} = useContext(AuthContext)
+  const { createUser, updateUser } = useContext(AuthContext)
   const navigate = useNavigate();
   const onSubmit = data => {
     createUser(data.email, data.password)
-    .then(result => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
-      updateUser(data.name,data.photo)
-      .then(()=>{
-        console.log('userProfile');
-        reset();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Registration Successful",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        navigate('/')
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        updateUser(data.name, data.photo)
+          .then(() => {
+
+            const userInfo = {
+              name: data.name,
+              email: data.email
+            }
+            axiosAll.post('/users', userInfo)
+              .then(res => {
+                if (res.data.insertedId) {
+                  reset();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Registration Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  navigate('/')
+
+                }
+              })
+
+          })
+          .catch(error =>
+            console.log(error)
+          )
       })
-      .catch(error =>
-        console.log(error)
-        )
-    })
 
   };
 
@@ -109,6 +123,7 @@ const Register = () => {
               <input type="submit" className="btn bg-green-400 w-full py-3" value="Register" />
             </div>
           </form>
+          <GoogleLogin></GoogleLogin>
           <span className=" text-center mb-3">Have an account?  <Link to="/login" className="text-xl font-medium text-green-500 hover:text-gray-300">Login</Link></span>
         </div>
       </div>

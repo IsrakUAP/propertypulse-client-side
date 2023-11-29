@@ -14,6 +14,7 @@ import MyProfile from "../pages/Dashboard/myProfile/myProfile";
 import MakeOfferPage from "../pages/Dashboard/MakeOfferPage/MakeOfferPage";
 import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
 import Myreviews from "../pages/Dashboard/Myreviews/Myreviews";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 
 
  export const router = createBrowserRouter([
@@ -46,7 +47,7 @@ import Myreviews from "../pages/Dashboard/Myreviews/Myreviews";
     },
     {
       path: 'dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRoute> <Dashboard></Dashboard> </PrivateRoute>,
       children: [
         {
           path: 'wishlist',
@@ -67,6 +68,10 @@ import Myreviews from "../pages/Dashboard/Myreviews/Myreviews";
         {
           path: 'myReviews',
           element:<Myreviews></Myreviews>
+        },
+        {
+          path: 'manageUsers',
+          element: <ManageUsers></ManageUsers>
         }
       ]
     },

@@ -12,18 +12,22 @@ const MyReviews = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchReviews = () => {
-     
+    const fetchReviews = async () => {
+      try {
         if (user && user.email) {
-          const response = axioSecure.get(`/reviews?userEmail=${user.email}`);
+          const response = await axioSecure.get(`/reviews?userEmail=${user.email}`);
           setReviews(response.data);
         }
-     
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      } finally {
         setLoading(false);
+      }
     };
-
+  
     fetchReviews();
   }, [user, setReviews, axioSecure]);
+  
 
   const handleDeleteReview = async (reviewId) => {
     console.log(reviewId);

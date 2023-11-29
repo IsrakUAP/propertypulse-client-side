@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 
 
 
@@ -65,9 +66,11 @@ const Login = () => {
               <input type="submit" className="btn bg-green-400 w-full py-3" value="Login" />
             </div>
           </form>
-          <span className=" text-center mb-3">Don't have an account? Create an account  <Link to="/register" className="text-xl font-medium text-green-500 hover:text-gray-300">Register</Link></span>
+          <GoogleLogin></GoogleLogin>
+          <span className=" text-center my-3">Don't have an account? Create an account  <Link to="/register" className="text-xl font-medium text-green-500 hover:text-gray-300">Register</Link></span>
         </div>
       </div>
+      
     </div>
 
 
