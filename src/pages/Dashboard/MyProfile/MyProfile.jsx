@@ -21,6 +21,7 @@ const MyProfile = () => {
           />
           <div>
             <p className="text-xl font-semibold">{user.displayName}</p>
+            <p className="text-xl font-semibold">{user.email}</p>
             {user.role && <p className="text-gray-600">Role: {user.role}</p>}
           </div>
         </div>

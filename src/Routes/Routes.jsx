@@ -12,6 +12,7 @@ import Dashboard from "../Layout/Dashboard";
 import Wishlist from "../pages/Dashboard/Wishlist/Wishlist";
 import MyProfile from "../pages/Dashboard/myProfile/myProfile";
 import MakeOfferPage from "../pages/Dashboard/MakeOfferPage/MakeOfferPage";
+import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
 
 
  export const router = createBrowserRouter([
@@ -57,6 +58,10 @@ import MakeOfferPage from "../pages/Dashboard/MakeOfferPage/MakeOfferPage";
         {
           path: '/dashboard/makeOfferPage/:propertyId',
           element:<MakeOfferPage></MakeOfferPage>
+        },
+        {
+          path: 'propertyBought',
+          element:<PropertyBought></PropertyBought>
         }
       ]
     },
