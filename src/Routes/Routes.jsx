@@ -8,6 +8,9 @@ import DetailsPage from "../pages/DetailsPage/DetailsPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import Wishlist from "../pages/Dashboard/Wishlist/Wishlist";
+import MyProfile from "../pages/Dashboard/myProfile/myProfile";
 
 
  export const router = createBrowserRouter([
@@ -36,6 +39,20 @@ import PrivateRoute from "./PrivateRoute";
           element:<Register></Register>
         }
 
+      ]
+    },
+    {
+      path: 'dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path: 'wishlist',
+          element:<Wishlist></Wishlist>
+        },
+        {
+          path: 'myProfile',
+          element:<MyProfile></MyProfile>
+        }
       ]
     },
   ]);

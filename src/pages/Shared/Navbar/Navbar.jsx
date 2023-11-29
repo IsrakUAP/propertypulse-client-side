@@ -71,10 +71,12 @@ const Navbar = () => {
                     </Link>
                 )}
             </div>
+            <Link to="/dashboard/wishlist">
             <div className=" rounded-lg bg-gray-300 p-3" style={{ position: 'fixed', bottom: '10px', right: '10px' }}>
                 <img className="h-10" src="https://cdn4.iconfinder.com/data/icons/ui-elements-29/64/Add-Bookmark-save-wishlist-ui-512.png" alt="" />
-                <span className=" badge badge-success ">{wishlist.length}</span>
+                <span className=" ml-[6px] badge badge-success ">{wishlist.length}</span>
             </div>
+            </Link>
         </nav>
     );
 };
