@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import Wishlist from "../pages/Dashboard/Wishlist/Wishlist";
 import MyProfile from "../pages/Dashboard/myProfile/myProfile";
+import MakeOfferPage from "../pages/Dashboard/MakeOfferPage/MakeOfferPage";
 
 
  export const router = createBrowserRouter([
@@ -52,6 +53,10 @@ import MyProfile from "../pages/Dashboard/myProfile/myProfile";
         {
           path: 'myProfile',
           element:<MyProfile></MyProfile>
+        },
+        {
+          path: '/dashboard/makeOfferPage/:propertyId',
+          element:<MakeOfferPage></MakeOfferPage>
         }
       ]
     },

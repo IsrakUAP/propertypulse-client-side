@@ -5,6 +5,8 @@ import useReviews from '../../Hooks/useReviews';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxios from '../../Hooks/useAxios';
+import Navbar from '../Shared/Navbar/Navbar';
+import useWishlist from '../../Hooks/useWishlist';
 
 const DetailsPage = () => {
   const { user } = useAuth();
@@ -12,6 +14,7 @@ const DetailsPage = () => {
   const [reviews, addReview] = useReviews();
   const axiosProvider = useAxios(); 
   const { _id } = useParams();
+  const [,refetch] = useWishlist();
   const filteredProperties = properties.filter((property) => property._id === _id);
   const [isReviewModalOpen, setReviewModalOpen] = useState(false);
   const [newReview, setNewReview] = useState({
@@ -51,6 +54,7 @@ const DetailsPage = () => {
               showConfirmButton: false,
               timer: 1500
             });
+            refetch();
           }
         })
     }
@@ -91,7 +95,8 @@ const DetailsPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto">
+      <Navbar></Navbar>
       {filteredProperties.map((property, idx) => (
         <div key={idx} className="bg-white p-8 rounded-lg shadow-md">
           <img

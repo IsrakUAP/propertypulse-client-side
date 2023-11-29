@@ -7,7 +7,7 @@ import { AuthContext } from "../providers/AuthProvider";
 const useWishlist = () => {
     const {user} = useContext(AuthContext)
     const axioSecure = useAxios();
-    const {data:wishlist = []} = useQuery({
+    const {refetch,data:wishlist = []} = useQuery({
         queryKey: ['wishlist', user?.email],
         queryFn: async () => {
             const res = await axioSecure.get(`/wishlist?email=${user.email}`);
@@ -15,7 +15,7 @@ const useWishlist = () => {
         }
 
     })
-    return [wishlist]
+    return [wishlist,refetch]
 };
 
 export default useWishlist;
