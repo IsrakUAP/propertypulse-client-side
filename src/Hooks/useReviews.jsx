@@ -5,7 +5,7 @@ const useReviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch('https://b8a12-server-side-iota.vercel.app/review')
         .then((response) => response.json())
         .then((data) => {
             setReviews(data); setLoading(false)

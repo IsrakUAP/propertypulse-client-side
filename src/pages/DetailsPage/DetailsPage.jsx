@@ -62,7 +62,7 @@ const DetailsPage = () => {
 
   const handleReviewSubmit = async () => {
     try {
-      const response = await fetch('http://localhost:5000/review', {
+      const response = await fetch('https://b8a12-server-side-iota.vercel.app/review', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

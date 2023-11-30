@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosAll = axios.create({
-    baseURL:'http://localhost:5000'
+    baseURL:'https://b8a12-server-side-iota.vercel.app'
 })
 
 const useAxiosAll = () => {

@@ -6,7 +6,7 @@ const useOffer = () => {
     const [offers, setOffers] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/submitOffer')
+        fetch('https://b8a12-server-side-iota.vercel.app/submitOffer')
       .then((response) => response.json())
       .then((data) => {
         setOffers(data); setLoading(false)});

@@ -5,7 +5,7 @@ const useProperties = () => {
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/property')
+        fetch('https://b8a12-server-side-iota.vercel.app/property')
       .then((response) => response.json())
       .then((data) => {
         setProperties(data); setLoading(false)});
