@@ -15,6 +15,7 @@ import MakeOfferPage from "../pages/Dashboard/MakeOfferPage/MakeOfferPage";
 import PropertyBought from "../pages/Dashboard/PropertyBought/PropertyBought";
 import Myreviews from "../pages/Dashboard/Myreviews/Myreviews";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import ManageReviews from "../pages/Dashboard/ManageReviews/ManageReviews";
 
 
  export const router = createBrowserRouter([
@@ -69,9 +70,14 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
           path: 'myReviews',
           element:<Myreviews></Myreviews>
         },
+        // admin
         {
           path: 'manageUsers',
           element: <ManageUsers></ManageUsers>
+        },
+        {
+          path: 'manageReviews',
+          element: <ManageReviews></ManageReviews>
         }
       ]
     },
