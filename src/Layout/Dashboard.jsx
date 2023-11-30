@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useWishlist from "../Hooks/useWishlist";
 import useReviews from "../Hooks/useReviews";
-import useAdmin from "../Hooks/useAdmin";
 
 
 const Dashboard = () => {

@@ -18,6 +18,8 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import ManageReviews from "../pages/Dashboard/ManageReviews/ManageReviews";
 import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
 import ManageProperties from "../pages/Dashboard/ManageProperties/ManageProperties";
+import AgentProfile from "../pages/Dashboard/AgentProfile/AgentProfile";
+import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
 
 
  export const router = createBrowserRouter([
@@ -88,6 +90,14 @@ import ManageProperties from "../pages/Dashboard/ManageProperties/ManageProperti
         {
           path:'manageProperties',
           element: <ManageProperties></ManageProperties>
+        },
+        {
+          path:'agentProfile',
+          element: <AgentProfile></AgentProfile>
+        },
+        {
+          path:'addProperty',
+          element:<AddProperty></AddProperty>
         }
       ]
     },
