@@ -23,6 +23,8 @@ import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
 import MyProperties from "../pages/Dashboard/MyProperties/MyProperties";
 import UpdatePropertyPage from "../pages/Dashboard/UpdatePropertyPage/UpdatePropertyPage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import MySoldProperties from "../pages/Dashboard/MySoldProperties/MySoldProperties";
+import RequestedOfferedProperties from "../pages/Dashboard/RequestedOfferedProperties/RequestedOfferedProperties";
 
 
  export const router = createBrowserRouter([
@@ -110,6 +112,14 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
         {
           path: 'updatePropertyPage/:propertyId',
           element:<UpdatePropertyPage></UpdatePropertyPage>
+        },
+        {
+          path: 'soldProperties',
+          element: <MySoldProperties></MySoldProperties>
+        },
+        {
+          path: 'requestedProperties',
+          element: <RequestedOfferedProperties></RequestedOfferedProperties>
         }
       ]
     },

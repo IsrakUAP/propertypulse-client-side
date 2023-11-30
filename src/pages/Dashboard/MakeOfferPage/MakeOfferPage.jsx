@@ -26,9 +26,9 @@ const MakeOfferPage = () => {
         propertyLocation: selectedProperty.propertyLocation,
         propertyImage: selectedProperty.propertyImage,
         agentName: selectedProperty.agentName,
-        status: selectedProperty.verificationStatus,
+        status: 'pending',
         offeredAmount,
-        buyerName,
+        buyerName:user.displayName,
         buyerEmail: user.email,
         buyingDate,
       };
