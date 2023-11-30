@@ -3,6 +3,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
+import { useState } from "react";
 
 
 
@@ -11,25 +12,35 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const handleLogin = e => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const handleLogin = async(e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    signIn(email, password)
-      .then(result => {
-        const user = result.user;
-        console.log(user);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login Successful",
-          showConfirmButton: false,
-          timer: 1500
-        });
-        navigate(from, {replace : true});
-      })
-  }
+    try {
+      const result = await signIn(email, password);
+      const user = result.user;
+      console.log(user);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login Successful",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.error("Login Error:", error);
+      if (error.code === "auth/user-not-found") {
+        setErrorMessage("Email not found. Please check your email and try again.");
+      } else if (error.code === "auth/wrong-password") {
+        setErrorMessage("Incorrect password. Please check your password and try again.");
+      } else {
+        setErrorMessage("email or password doesn't match Please try again");
+      }
+    }
+  };
   return (
     <div className="w-full lg:w-1/2 mx-auto mt-8">
       <div className="flex flex-col items-center">
@@ -62,6 +73,7 @@ const Login = () => {
                 required
               />
             </div>
+            <div className="mb-4 text-red-500">{errorMessage}</div>
             <div>
               <input type="submit" className="btn bg-green-400 w-full py-3" value="Login" />
             </div>

@@ -1,14 +1,16 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useWishlist from "../Hooks/useWishlist";
-import useReviews from "../Hooks/useReviews";
+import { Helmet } from "react-helmet-async";
 
 
 const Dashboard = () => {
     const [wishlist] = useWishlist();
-    const [reviews] = useReviews();
 
     return (
         <div className=" space-x-3 flex m-4">
+            <Helmet>
+                <title>PropertyPulse | DashBoard</title>
+            </Helmet>
             <div className=" min-h-full bg-green-400 w-63">
                 <ul className="menu p-4">
                     <li><NavLink to="/">Home</NavLink></li>
@@ -17,7 +19,7 @@ const Dashboard = () => {
                     <li><NavLink to="/dashboard/myProfile">My Profile</NavLink></li>
                     <li><NavLink to="/dashboard/wishlist">Wishlist({wishlist.length})</NavLink></li>
                     <li><NavLink to="/dashboard/propertyBought">Property bought</NavLink></li>
-                    <li><NavLink to="/dashboard/myReviews">My reviews({reviews.length})</NavLink></li>
+                    <li><NavLink to="/dashboard/myReviews">My reviews</NavLink></li>
 
                     <div className="divider">Agent</div>
                     <li><NavLink to="/dashboard/agentProfile">Agent Profile</NavLink></li>

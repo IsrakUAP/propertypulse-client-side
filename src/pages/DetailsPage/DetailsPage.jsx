@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import useAxios from '../../Hooks/useAxios';
 import Navbar from '../Shared/Navbar/Navbar';
 import useWishlist from '../../Hooks/useWishlist';
+import { Helmet } from 'react-helmet-async';
 
 const DetailsPage = () => {
   const { user } = useAuth();
@@ -99,6 +100,9 @@ const DetailsPage = () => {
 
   return (
     <div className="container mx-auto">
+      <Helmet>
+                <title>PropertyPulse | Details</title>
+            </Helmet>
       <Navbar></Navbar>
       {filteredProperties.map((property, idx) => (
         <div key={idx} className="bg-white p-8 rounded-lg shadow-md">

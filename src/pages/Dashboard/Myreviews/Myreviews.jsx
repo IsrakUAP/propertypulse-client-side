@@ -58,6 +58,7 @@ const MyReviews = () => {
             }
         });
   };
+  const filteredreviews = reviews.filter(review=> review.reviewerEmail === user.email);
 
   return (
     <div className="container mx-auto">
@@ -71,7 +72,7 @@ const MyReviews = () => {
 
       {!loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.map((review) => (
+          {filteredreviews.map((review) => (
             <div key={review._id} className="p-6 border border-gray-300 rounded-md shadow-md">
               <h2 className="text-2xl font-bold mb-2">{review.propertyTitle}</h2>
               <p className="text-gray-600 mb-2">Agent: {review.agentName}</p>

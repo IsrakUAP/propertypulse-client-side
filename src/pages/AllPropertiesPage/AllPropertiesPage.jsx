@@ -2,15 +2,20 @@ import { Link } from "react-router-dom";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import useProperties from "../../Hooks/useProperties";
 import Navbar from "../Shared/Navbar/Navbar";
+import { Helmet } from "react-helmet-async";
 
 const AllPropertiesPage = () => {
     const [properties] = useProperties();
+    const filteredProperties = properties.filter(property => property.verificationStatus !== "reject");
     return (
         <div className="container mx-auto">
+          <Helmet>
+                <title>PropertyPulse | AllProperties</title>
+            </Helmet>
             <Navbar></Navbar>
        <SectionHeader heading={"All Properties List"}></SectionHeader>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {properties.map((property, index) => (
+          {filteredProperties.map((property, index) => (
             <div key={index} className="bg-white p-4 rounded-lg shadow-md">
               <img src={property.propertyImage} alt="Property" className="w-full h-48 object-cover mb-4" />
               <h3 className="text-xl font-semibold mb-2">{property.propertyTitle}</h3>
