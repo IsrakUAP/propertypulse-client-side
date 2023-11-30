@@ -1,3 +1,4 @@
+import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Navbar/Navbar";
 import AdvertisementSection from "../AdvertisementSection/AdvertisementSection";
 import Banner from "../Banner/Banner";
@@ -11,6 +12,7 @@ const Home = () => {
             <Banner></Banner>
             <AdvertisementSection></AdvertisementSection>
             <LatestUserReview></LatestUserReview>
+            <Footer></Footer>
         </div>
     );
 };

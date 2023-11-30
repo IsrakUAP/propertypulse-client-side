@@ -20,12 +20,16 @@ import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
 import ManageProperties from "../pages/Dashboard/ManageProperties/ManageProperties";
 import AgentProfile from "../pages/Dashboard/AgentProfile/AgentProfile";
 import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
+import MyProperties from "../pages/Dashboard/MyProperties/MyProperties";
+import UpdatePropertyPage from "../pages/Dashboard/UpdatePropertyPage/UpdatePropertyPage";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
           path: "/",
@@ -98,6 +102,14 @@ import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
         {
           path:'addProperty',
           element:<AddProperty></AddProperty>
+        },
+        {
+          path:'myProperties',
+          element:<MyProperties></MyProperties>
+        },
+        {
+          path: 'updatePropertyPage/:propertyId',
+          element:<UpdatePropertyPage></UpdatePropertyPage>
         }
       ]
     },
