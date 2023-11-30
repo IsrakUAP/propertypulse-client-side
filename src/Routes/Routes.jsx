@@ -17,6 +17,7 @@ import Myreviews from "../pages/Dashboard/Myreviews/Myreviews";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import ManageReviews from "../pages/Dashboard/ManageReviews/ManageReviews";
 import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
+import ManageProperties from "../pages/Dashboard/ManageProperties/ManageProperties";
 
 
  export const router = createBrowserRouter([
@@ -83,6 +84,10 @@ import AdminProfile from "../pages/Dashboard/AdminProfile/AdminProfile";
         {
            path:'adminProfile',
            element:<AdminProfile></AdminProfile>
+        },
+        {
+          path:'manageProperties',
+          element: <ManageProperties></ManageProperties>
         }
       ]
     },
