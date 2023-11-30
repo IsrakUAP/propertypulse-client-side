@@ -22,7 +22,6 @@ const Dashboard = () => {
 
                                 <div className="divider">Admin</div>
                                 <li><NavLink to="/dashboard/adminProfile">Admin Profile</NavLink></li>
-                                <li><NavLink to="/dashboard/adminProfile">Admin Profile</NavLink></li>
                                 <li><NavLink to="/dashboard/manageProperties">Manage Properties</NavLink></li>
                                 <li><NavLink to="/dashboard/manageUsers">Manage Users</NavLink></li>
                                 <li><NavLink to="/dashboard/manageReviews">Manage Reviews</NavLink></li>
